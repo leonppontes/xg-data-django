@@ -61,3 +61,27 @@ playernpxG_df = playernpxG_df.head(100)
 playernpG_xG_df = playernpG_xG_df.head(100)
 print(playernpxG_df)
 print(playernpG_xG_df)
+
+#Player Assist Dataframe
+urlPassing= 'https://fbref.com/en/comps/24/passing/Serie-A-Stats'
+passing_df = pd.read_html(
+    requests.get(urlPassing).text.replace('<!--','').replace('-->','')
+    ,attrs={'id':'stats_passing'}
+)[0]
+passing_df = passing_df[[( 'Unnamed: 1_level_0',  'Player'),
+            ('Unnamed: 2_level_0', 'Nation'),
+            ('Unnamed: 3_level_0', 'Pos'),
+            ('Unnamed: 4_level_0', 'Squad'),
+            ('Unnamed: 5_level_0', 'Age'),('Unnamed: 7_level_0', '90s'),
+            ('Expected','xA'),('Unnamed: 30_level_0', 'PrgP')]]
+passing_df.columns=['Player', 'Nation', 'Pos', 'Squad', 'Age', '90s', 'xA', 'PrgP']
+passing_df = passing_df[~passing_df['xA'].str.contains('xA')]
+passing_df['xA'] = passing_df['xA'].astype(float)
+passing_df['Age'] = passing_df['Age'].str[:-4]
+passing_df['Nation'] = passing_df['Nation'].str[3:]
+passing_df = passing_df.sort_values(by='xA', ascending=False)
+passing_df = passing_df.head(100)
+print(passing_df)
+
+#So far there are 2 squad dataframes (xG and xGA) and 4 players dataframe (Keeper, npxG, np:G-xG and xA).
+#To do: Squad moment (last 5 games score based on results at home and as a visitor)
