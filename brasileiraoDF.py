@@ -1,6 +1,6 @@
 import requests
 import pandas as pd
-
+"""
 #Keepers Dataframe
 urlKeeper= 'https://fbref.com/en/comps/24/keepersadv/Serie-A-Stats#all_stats_keeper_adv'
 keeper_df = pd.read_html(
@@ -82,6 +82,18 @@ passing_df['Nation'] = passing_df['Nation'].str[3:]
 passing_df = passing_df.sort_values(by='xA', ascending=False)
 passing_df = passing_df.head(100)
 print(passing_df)
-
+"""
 #So far there are 2 squad dataframes (xG and xGA) and 4 players dataframe (Keeper, npxG, np:G-xG and xA).
 #To do: Squad moment (last 5 games score based on results at home and as a visitor)
+
+#Squad Index Dataframe
+urlSI = 'https://fbref.com/en/comps/24/Serie-A-Stats'
+SI_df = pd.read_html(urlSI)[0]
+SI_df = SI_df[["Squad", "MP","Pts/MP", "Last 5"]]
+def calculate_squad_moment_index(last_5_results):
+    letter_values = {'W': 2.5, 'D': 1.5, 'L': 0.5}
+    recent_values = [1, 2, 3, 4, 5]
+    squad_moment_index = sum(letter_values[letter] * recent_values[i] for i, letter in enumerate(last_5_results.split()))
+    return squad_moment_index
+SI_df['Squad Moment Index'] = SI_df['Last 5'].apply(calculate_squad_moment_index)
+print(SI_df.head())
