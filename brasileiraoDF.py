@@ -1,6 +1,6 @@
 import requests
 import pandas as pd
-"""
+
 #Keepers Dataframe
 urlKeeper= 'https://fbref.com/en/comps/24/keepersadv/Serie-A-Stats#all_stats_keeper_adv'
 keeper_df = pd.read_html(
@@ -82,9 +82,6 @@ passing_df['Nation'] = passing_df['Nation'].str[3:]
 passing_df = passing_df.sort_values(by='xA', ascending=False)
 passing_df = passing_df.head(100)
 print(passing_df)
-"""
-#So far there are 2 squad dataframes (xG and xGA) and 4 players dataframe (Keeper, npxG, np:G-xG and xA).
-#To do: Squad moment (last 5 games score based on results at home and as a visitor)
 
 #Squad Index Dataframe
 urlSI = 'https://fbref.com/en/comps/24/Serie-A-Stats'
@@ -96,4 +93,10 @@ def calculate_squad_moment_index(last_5_results):
     squad_moment_index = sum(letter_values[letter] * recent_values[i] for i, letter in enumerate(last_5_results.split()))
     return squad_moment_index
 SI_df['Squad Moment Index'] = SI_df['Last 5'].apply(calculate_squad_moment_index)
-print(SI_df.head())
+HomeAway_df = pd.read_html(urlSI)[1]
+HomeAway_df = HomeAway_df[[('Unnamed: 1_level_0','Squad'), ('Home', 'xGD/90'), ('Away', 'xGD/90')]]
+HomeAway_df.columns=['Squad', 'Home xGD/90', 'Away xGD/90']
+SI_df = pd.merge(SI_df, HomeAway_df, on='Squad')
+SI_df['Squad Moment Index'] = SI_df['Squad Moment Index'].astype(float)
+SI_df = SI_df.sort_values(by='Squad Moment Index', ascending=False)
+print(SI_df)
