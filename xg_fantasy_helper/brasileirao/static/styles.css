@@ -1,0 +1,38 @@
+body {
+    background-color: darkblue;
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+.buttons a {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: yellow;
+    color: darkblue;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.tables {
+    width: 80%;
+    margin: 0 auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+th, td {
+    border: 1px solid white;
+    padding: 10px;
+}
+
+th {
+    background-color: darkblue;
+    color: white;
+}

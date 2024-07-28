@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>xG Fantasy Helper</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <h1>xG Fantasy Helper</h1>
+    <div class="buttons">
+        <a href="{% url 'brasileirao' %}">Brasileirão</a>
+        <a href="{% url 'premier_league' %}">Premier League</a>
+        <a href="{% url 'bundesliga' %}">Bundesliga</a>
+        <a href="{% url 'la_liga' %}">La Liga</a>
+        <a href="{% url 'serie_a' %}">Serie A</a>
+    </div>
+</body>
+</html>
