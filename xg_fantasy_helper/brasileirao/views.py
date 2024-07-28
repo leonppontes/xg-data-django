@@ -77,8 +77,8 @@ def generate_dataframes():
     player_df['Nation'] = player_df['Nation'].str[3:]
     playernpxG_df = player_df.sort_values(by='npxG', ascending=False)
     playernpG_xG_df = player_df.sort_values(by='np:G-xG', ascending=False)
-    playernpxG_df = playernpxG_df.head(100)
-    playernpG_xG_df = playernpG_xG_df.head(100)
+    playernpxG_df = playernpxG_df.head(50)
+    playernpG_xG_df = playernpG_xG_df.head(50)
 
     passing_df = pd.read_html(
         requests.get(urlPassing).text.replace('<!--', '').replace('-->', '')
@@ -96,7 +96,7 @@ def generate_dataframes():
     passing_df['Age'] = passing_df['Age'].str[:-4]
     passing_df['Nation'] = passing_df['Nation'].str[3:]
     passing_df = passing_df.sort_values(by='xA', ascending=False)
-    passing_df = passing_df.head(100)
+    passing_df = passing_df.head(50)
 
     SI_df = pd.read_html(urlSI)[0]
     SI_df = SI_df[["Squad", "MP","Pts/MP", "Last 5"]]
