@@ -39,6 +39,6 @@ th {
 }
 
 td:first-child {
-    background-color: orange;
+    background-color: darkgreen;
     color: white;
 }

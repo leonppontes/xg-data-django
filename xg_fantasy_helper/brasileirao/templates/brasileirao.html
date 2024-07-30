@@ -8,30 +8,202 @@
     <link rel="stylesheet" href="{% static 'styles.css' %}">
 </head>
 <body>
-    <h1>Brasileirão</h1>
-    <div class="tables">
-        <!-- Loop through and display each dataframe as a table -->
-        {% for df in dataframes %}
-        <h2>{{ df.name }}</h2>
-        <table>
-            <thead>
-                <tr>
-                    {% for col in df.columns %}
-                    <th>{{ col }}</th>
-                    {% endfor %}
-                </tr>
-            </thead>
-            <tbody>
-                {% for row in df.rows %}
-                <tr>
-                    {% for cell in row %}
-                    <td>{{ cell }}</td>
-                    {% endfor %}
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        {% endfor %}
-    </div>
+    <h1>Brasileirão Stats</h1>
+    
+    <h2>Squad XG</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Squad</th>
+                <th>90s</th>
+                <th>Goals</th>
+                <th>xG</th>
+                <th>G-xG</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in squad_xg %}
+            <tr>
+                <td>{{ row.squad }}</td>
+                <td>{{ row.minutes_played }}</td>
+                <td>{{ row.goals }}</td>
+                <td>{{ row.xg }}</td>
+                <td>{{ row.g_xg }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Squad XGA</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Squad</th>
+                <th>90s</th>
+                <th>Goals</th>
+                <th>xG</th>
+                <th>G-xG</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in squad_xga %}
+            <tr>
+                <td>{{ row.squad }}</td>
+                <td>{{ row.minutes_played }}</td>
+                <td>{{ row.goals }}</td>
+                <td>{{ row.xg }}</td>
+                <td>{{ row.g_xg }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Player npxG</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Player</th>
+                <th>Nation</th>
+                <th>Pos</th>
+                <th>Squad</th>
+                <th>Age</th>
+                <th>90s</th>
+                <th>Goals</th>
+                <th>npxG</th>
+                <th>np:G-xG</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in player_npxg %}
+            <tr>
+                <td>{{ row.player }}</td>
+                <td>{{ row.nation }}</td>
+                <td>{{ row.pos }}</td>
+                <td>{{ row.squad }}</td>
+                <td>{{ row.age }}</td>
+                <td>{{ row.minutes_played }}</td>
+                <td>{{ row.goals }}</td>
+                <td>{{ row.npxg }}</td>
+                <td>{{ row.np_g_xg }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Player npG-xG</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Player</th>
+                <th>Nation</th>
+                <th>Pos</th>
+                <th>Squad</th>
+                <th>Age</th>
+                <th>90s</th>
+                <th>Goals</th>
+                <th>npxG</th>
+                <th>np:G-xG</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in player_npg_xg %}
+            <tr>
+                <td>{{ row.player }}</td>
+                <td>{{ row.nation }}</td>
+                <td>{{ row.pos }}</td>
+                <td>{{ row.squad }}</td>
+                <td>{{ row.age }}</td>
+                <td>{{ row.minutes_played }}</td>
+                <td>{{ row.goals }}</td>
+                <td>{{ row.npxg }}</td>
+                <td>{{ row.np_g_xg }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Player Assists</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Player</th>
+                <th>Nation</th>
+                <th>Pos</th>
+                <th>Squad</th>
+                <th>Age</th>
+                <th>90s</th>
+                <th>xA</th>
+                <th>PrgP</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in player_assists %}
+            <tr>
+                <td>{{ row.player }}</td>
+                <td>{{ row.nation }}</td>
+                <td>{{ row.pos }}</td>
+                <td>{{ row.squad }}</td>
+                <td>{{ row.age }}</td>
+                <td>{{ row.minutes_played }}</td>
+                <td>{{ row.xa }}</td>
+                <td>{{ row.prgp }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Keepers</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Player</th>
+                <th>Nation</th>
+                <th>Squad</th>
+                <th>Age</th>
+                <th>90s</th>
+                <th>PSxG-GA/90</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in keepers %}
+            <tr>
+                <td>{{ row.player }}</td>
+                <td>{{ row.nation }}</td>
+                <td>{{ row.squad }}</td>
+                <td>{{ row.age }}</td>
+                <td>{{ row.minutes_played }}</td>
+                <td>{{ row.psxg_ga_per90 }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Squad Index</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Squad</th>
+                <th>MP</th>
+                <th>Pts/MP</th>
+                <th>Last 5</th>
+                <th>Squad Moment Index</th>
+                <th>Home xGD/90</th>
+                <th>Away xGD/90</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in squad_index %}
+            <tr>
+                <td>{{ row.squad }}</td>
+                <td>{{ row.mp }}</td>
+                <td>{{ row.pts_per_mp }}</td>
+                <td>{{ row.last_5 }}</td>
+                <td>{{ row.squad_moment_index }}</td>
+                <td>{{ row.home_xgd_per90 }}</td>
+                <td>{{ row.away_xgd_per90 }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </body>
 </html>
