@@ -5,6 +5,10 @@ body {
     text-align: center;
 }
 
+.buttons {
+    text-align: center; /* Center the text and inline elements inside */
+}
+
 .buttons a {
     display: inline-block;
     margin: 10px;
@@ -16,14 +20,31 @@ body {
     font-weight: bold;
 }
 
+.update-btn {
+    background-color: lightgreen;
+    color: darkblue;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+    display: inline-block;
+    font-weight: bold;
+}
+.update-btn:hover {
+    background-color: darkgreen;
+}
+
 .tables {
-    width: 80%;
+    width: 70%;
     margin: 0 auto;
 }
 
 table {
-    width: 80%;
-    border-collapse: collapse;
+    width: 80%; /* Adjust as needed to fit the container width */
+    margin: 0 auto; /* Auto margins for horizontal centering */
+    border-collapse: collapse; /* Collapse borders for a cleaner look */
     margin-bottom: 40px;
     margin-top: 0;
 }

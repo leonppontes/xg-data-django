@@ -1,8 +1,21 @@
 from django.shortcuts import render
 from .models import Keeper, SquadXG, SquadXGA, PlayerNpxG, PlayerNpGXG, Passing, SquadIndex
+from django.http import HttpResponse
+from django.core.management import call_command
 
 def index(request):
-    return render(request, 'index.html')
+    update_message = None
+
+    if request.method == 'POST':
+        try:
+            # Call the management command
+            call_command('update_data')
+            update_message = "Data updated successfully!"
+        except Exception as e:
+            update_message = f"Error updating data: {e}"
+
+    return render(request, 'index.html', {'update_message': update_message})
+
 
 def brasileirao(request):
     # Fetching top 50 rows for each required model

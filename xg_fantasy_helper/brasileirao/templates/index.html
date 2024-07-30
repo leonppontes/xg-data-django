@@ -15,6 +15,14 @@
         <a href="{% url 'bundesliga' %}">Bundesliga</a>
         <a href="{% url 'la_liga' %}">La Liga</a>
         <a href="{% url 'serie_a' %}">Serie A</a>
+        <form method="post" action="{% url 'update_data' %}">
+            {% csrf_token %}
+            <button type="submit" class="update-btn">Update Data</button>
+        </form>
     </div>
+
+    {% if update_message %}
+        <p>{{ update_message }}</p>
+    {% endif %}    
 </body>
 </html>
