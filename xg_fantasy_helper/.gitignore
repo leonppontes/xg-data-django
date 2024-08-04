@@ -1,0 +1,36 @@
+#copied from: https://allthingstechie.hashnode.dev/using-gitignore-in-a-django-project
+
+# Django-specific files
+*.log 
+*.pot
+*.pyc
+__pycache__/
+**/__pycache__/
+local_settings.py
+db.sqlite3
+
+# Virtual Environment
+.env
+venv/
+env/
+
+# PyCharm-specific files
+.idea/
+
+# Other files
+.DS_Store
+Thumbs.db
+.coverage
+.tox/
+.eggs/
+static/admin
+brasileirao/__pycache__
+xg_fantasy_helper/__pycache__
+
+# Visual Studio Code # 
+.vscode/* 
+!.vscode/settings.json 
+!.vscode/tasks.json 
+!.vscode/launch.json 
+!.vscode/extensions.json 
+.history
